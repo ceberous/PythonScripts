@@ -7,6 +7,12 @@ import tkFileDialog, Tkconstants
 from hachoir_metadata import extractMetadata
 from hachoir_parser import createParser
 
+#									  #	
+#      Adds Up Total Watch Time 	  #
+# #####################################
+#       For A Given Directory 		  #
+# 									  #
+
 dirpathAsk = tkFileDialog.askdirectory()
 if (dirpathAsk):
 	print(dirpathAsk)
