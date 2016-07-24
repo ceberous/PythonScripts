@@ -1,6 +1,47 @@
 import sys
 import os
 
+hex_letters = [ "a" , "b" , "c" , "d" , "e" , "f" ]
+
+# 1 letter and 1 number for each spot in length
+def pattern_fill( length ):
+
+	global hex_letters
+	output = ''
+
+	l = int(length)
+	bounds = 16
+	
+	i = 0
+	j = 1
+	hLPOS = 0
+	
+	while i < l: 
+
+		while j < 10:
+
+			output = output + hex_letters[hLPOS] + str(j)
+			j = j + 1
+			i = i + 1
+
+		j = 1
+		hLPOS = hLPOS + 1
+		if hLPOS > len(hex_letters) - 1:
+			hLPOS = 0
+
+	print(output)
+
+	fileDEST = os.getcwd()
+	fileDEST = os.path.join( fileDEST , "patternFILL.txt" )
+	if os.path.exists( fileDEST ):
+		with open( fileDEST , "a" ) as myfile:
+			myfile.write( output )
+	else:
+		with open( fileDEST , "w" ) as myfile:
+			myfile.write( output )
+
+
+
 def convert_to_bytes( str1 ):
 	print("tsting")
 	return "".join( "{:02x}".format( ord(c) ) for c in str1 )
@@ -37,8 +78,8 @@ sysArgLen = len( sys.argv )
 if sysArgLen == 1:
 	print("Pleae input a string to write\na File PATH\n\tor/and a multiplyer\n")
 elif sysArgLen == 2:
-	print( "still not enough options passed")
-	print( sys.argv[1] )
+	# just a simple patter-fill dump
+	pattern_fill(sys.argv[1])
 elif sysArgLen == 3:
 	print ( sys.argv[1] + " @ " + sys.argv[2] )
 	print_string( sys.argv[1] , sys.argv[2] )
